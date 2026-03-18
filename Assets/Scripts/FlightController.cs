@@ -1,6 +1,7 @@
 // FlightController.cs
 // CENG 454 – HW1: Sky-High Prototype
 // Author: Yasin Kapaklıkaya | Student ID: 210444078
+
 using UnityEngine;
 
 public class FlightController : MonoBehaviour {
@@ -27,7 +28,28 @@ public class FlightController : MonoBehaviour {
 
     private void HandleRotation()
     {
-       
+       float inputPitch = 0f;
+       float inputYaw = 0f;
+
+       if (Input.GetKey(KeyCode.UpArrow))
+       {
+        inputPitch = 1f;
+       }
+       else if (Input.GetKey(KeyCode.DownArrow))
+       {
+        inputPitch = -1f;
+       }
+
+       if (Input.GetKey(KeyCode.RightArrow))
+        {
+            inputYaw = -1f;
+        }
+        else if(Input.GetKey(KeyCode.LeftArrow))
+        {
+            inputYaw = 1f;
+        }
+       transform.Rotate(Vector3.right * inputPitch * pitchMultiplier * Time.deltaTime, Space.Self);
+       transform.Rotate(Vector3.up * inputYaw * yawMultiplier * Time.deltaTime, Space.Self);
     }
 
     private void HandleThrust()
