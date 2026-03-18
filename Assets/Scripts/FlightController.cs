@@ -30,6 +30,7 @@ public class FlightController : MonoBehaviour {
     {
        float inputPitch = 0f;
        float inputYaw = 0f;
+       float inputRoll = 0f;
 
        if (Input.GetKey(KeyCode.UpArrow))
        {
@@ -40,6 +41,7 @@ public class FlightController : MonoBehaviour {
         inputPitch = -1f;
        }
 
+
        if (Input.GetKey(KeyCode.RightArrow))
         {
             inputYaw = -1f;
@@ -48,8 +50,20 @@ public class FlightController : MonoBehaviour {
         {
             inputYaw = 1f;
         }
+
+
+        if (Input.GetKey(KeyCode.Q))
+        {
+            inputRoll = 1f;
+        }
+        else if (Input.GetKey(KeyCode.E))
+        {
+            inputRoll = -1f;
+        }
+
        transform.Rotate(Vector3.right * inputPitch * pitchMultiplier * Time.deltaTime, Space.Self);
        transform.Rotate(Vector3.up * inputYaw * yawMultiplier * Time.deltaTime, Space.Self);
+       transform.Rotate(Vector3.forward * inputRoll * rollingMultiplier * Time.deltaTime, Space.Self);
     }
 
     private void HandleThrust()
