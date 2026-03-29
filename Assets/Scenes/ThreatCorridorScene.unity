@@ -331,10 +331,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df64bb5888d4140d0ac252964d2bc9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FlightController
-  pitchMultiplier: 45
-  yawMultiplier: 45
-  rollingMultiplier: 45
-  thrustMultiplier: 5
+  pitchMultiplier: 200
+  yawMultiplier: 100
+  rollingMultiplier: 100
+  thrustMultiplier: 10
 --- !u!65 &31164611
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -411,6 +411,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124454798}
+  - component: {fileID: 124454799}
   m_Layer: 0
   m_Name: MissileLauncher
   m_TagString: Untagged
@@ -433,6 +434,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &124454799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124454797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71afdd52f7f384a279e5c24e3771f666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissileLauncher
 --- !u!1 &240937386
 GameObject:
   m_ObjectHideFlags: 0
@@ -1336,6 +1349,7 @@ GameObject:
   - component: {fileID: 1446666956}
   - component: {fileID: 1446666955}
   - component: {fileID: 1446666954}
+  - component: {fileID: 1446666958}
   m_Layer: 0
   m_Name: Danger_Zone
   m_TagString: DangerZone
@@ -1362,8 +1376,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1000, z: 1}
+  m_Center: {x: 0, y: 20, z: 0}
 --- !u!23 &1446666955
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1436,6 +1450,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1446666958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446666953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb6d9dc8f824c4caa8e478cc2de84456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DangerZoneController
+  examManager: {fileID: 38692162}
+  missileLauncher: {fileID: 124454799}
+  missileDelay: 5
 --- !u!1 &1543389647
 GameObject:
   m_ObjectHideFlags: 0
