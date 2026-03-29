@@ -334,7 +334,7 @@ MonoBehaviour:
   pitchMultiplier: 200
   yawMultiplier: 100
   rollingMultiplier: 100
-  thrustMultiplier: 10
+  thrustMultiplier: 5
 --- !u!65 &31164611
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1707,7 +1707,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617595279}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20790687, y: -0.0014175882, z: 0.0066692308, w: 0.9781249}
+  m_LocalRotation: {x: 0.2346242, y: 0.013446607, z: -0.0032458224, w: 0.9719877}
   m_LocalPosition: {x: 120, y: 6, z: 47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1837,6 +1837,7 @@ GameObject:
   - component: {fileID: 2136208590}
   - component: {fileID: 2136208589}
   - component: {fileID: 2136208591}
+  - component: {fileID: 2136208592}
   m_Layer: 0
   m_Name: CinemachineCamera
   m_TagString: Untagged
@@ -1895,7 +1896,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2136208588}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.20790687, y: -0.0014175882, z: 0.0066692308, w: 0.9781249}
+  m_LocalRotation: {x: 0.2346242, y: 0.013446606, z: -0.0032458217, w: 0.9719878}
   m_LocalPosition: {x: 120, y: 6, z: 47}
   m_LocalScale: {x: 1, y: 1, z: 1.5491}
   m_ConstrainProportionsScale: 0
@@ -1915,12 +1916,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
   TrackerSettings:
-    BindingMode: 3
-    PositionDamping: {x: 1, y: 1, z: 1}
+    BindingMode: 1
+    PositionDamping: {x: 3, y: 1, z: 0}
     AngularDampingMode: 0
-    RotationDamping: {x: 1, y: 1, z: 1}
+    RotationDamping: {x: 0.5, y: 0.8, z: 0.5}
     QuaternionDamping: 1
   FollowOffset: {x: 0, y: 4, z: -8}
+--- !u!114 &2136208592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2136208588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f38bda98361e1de48a4ca2bd86ea3c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineRotationComposer
+  Composition:
+    ScreenPosition: {x: -0.02071637, y: -0.008714676}
+    DeadZone:
+      Enabled: 0
+      Size: {x: 0.2, y: 0.2}
+    HardLimits:
+      Enabled: 0
+      Size: {x: 0.8, y: 0.8}
+      Offset: {x: 0, y: 0}
+  CenterOnActivate: 1
+  TargetOffset: {x: 0, y: 0, z: 0}
+  Damping: {x: 0.5, y: 0.5}
+  Lookahead:
+    Enabled: 0
+    Time: 0
+    Smoothing: 0
+    IgnoreY: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
