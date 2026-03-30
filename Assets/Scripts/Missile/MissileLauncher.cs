@@ -2,14 +2,51 @@ using UnityEngine;
 
 public class MissileLauncher : MonoBehaviour
 {
+    [SerializeField] private GameObject missilePrefab;
+    [SerializeField] private Transform launchPoint;
+    [SerializeField] private AudioSource launchAudioSource;
+
+    private GameObject activeMissile;
+
     public GameObject Launch(Transform target)
     {
-        Debug.Log("Missile launch requested.");
-        return null;
+        if (missilePrefab == null || launchPoint == null || target == null)
+        {
+            Debug.LogWarning("Missile launch failed: missing reference.");
+            return null;
+        }
+
+        if (activeMissile != null)
+        {
+            Destroy(activeMissile);
+        }
+
+        activeMissile = Instantiate(
+            missilePrefab,
+            launchPoint.position,
+            launchPoint.rotation
+        );
+
+        MissileHoming homing = activeMissile.GetComponent<MissileHoming>();
+        if (homing != null)
+        {
+            homing.SetTarget(target);
+        }
+
+        if (launchAudioSource != null)
+        {
+            launchAudioSource.Play();
+        }
+
+        return activeMissile;
     }
 
     public void DestroyActiveMissile()
     {
-        Debug.Log("Destroy active missile requested.");
+        if (activeMissile != null)
+        {
+            Destroy(activeMissile);
+            activeMissile = null;
+        }
     }
 }
