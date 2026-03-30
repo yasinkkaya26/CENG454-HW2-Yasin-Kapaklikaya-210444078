@@ -108,7 +108,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -155,3 +155,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac271f61c1fb412a964b1c014094e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissileHoming
+  movementSpeed: 20
+  turningSpeed: 5

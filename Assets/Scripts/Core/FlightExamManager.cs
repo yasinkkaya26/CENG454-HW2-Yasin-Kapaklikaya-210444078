@@ -128,4 +128,14 @@ public class FlightExamManager : MonoBehaviour
 
         missionText.text = "Mission: In progress";
     }
+
+    public void OnMissileHit()
+    {
+        missileActive = false;
+        missileCountdownActive = false;
+        threatCleared = false;
+
+        statusText.text = "Missile hit! Return to runway and try again.";
+        RefreshMissionText();
+    }
 }
