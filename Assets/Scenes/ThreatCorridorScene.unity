@@ -226,11 +226,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744e01d3d39888e4bb092f1d04f82869, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744e01d3d39888e4bb092f1d04f82869, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 55
+      value: 80.34
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 744e01d3d39888e4bb092f1d04f82869, type: 3}
       propertyPath: m_LocalRotation.w
@@ -281,6 +281,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 744e01d3d39888e4bb092f1d04f82869, type: 3}
       insertIndex: -1
       addedObject: {fileID: 31164611}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 744e01d3d39888e4bb092f1d04f82869, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 31164614}
   m_SourcePrefab: {fileID: 100100000, guid: 744e01d3d39888e4bb092f1d04f82869, type: 3}
 --- !u!1 &31164605 stripped
 GameObject:
@@ -334,7 +337,7 @@ MonoBehaviour:
   pitchMultiplier: 200
   yawMultiplier: 100
   rollingMultiplier: 100
-  thrustMultiplier: 5
+  thrustMultiplier: 30
 --- !u!65 &31164611
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -356,6 +359,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2023847, y: 0.59999514, z: 3.149723}
   m_Center: {x: 0, y: 0.39472127, z: -0.1386593}
+--- !u!114 &31164614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 31164605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a238d5ac7ae5949c8a67bc36dc725fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AircraftThreatHandler
+  respawnPoint: {fileID: 1432535998}
+  hitAudioSource: {fileID: 0}
+  examManager: {fileID: 38692162}
 --- !u!1 &38692161
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,6 +405,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FlightExamManager
   statusText: {fileID: 1392959464}
   missionText: {fileID: 597710724}
+  successAudioSource: {fileID: 0}
 --- !u!4 &38692163
 Transform:
   m_ObjectHideFlags: 0
@@ -427,13 +446,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 124454797}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 230, y: 2, z: 220}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 195, y: 1, z: 220}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1584318281}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &124454799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +466,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71afdd52f7f384a279e5c24e3771f666, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MissileLauncher
+  missilePrefab: {fileID: 5035462483979913183, guid: 1f0420fbffc0c4158af093c9c9112b75, type: 3}
+  launchPoint: {fileID: 1584318281}
+  launchAudioSource: {fileID: 0}
 --- !u!1 &240937386
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,6 +667,7 @@ GameObject:
   - component: {fileID: 639534381}
   - component: {fileID: 639534380}
   - component: {fileID: 639534379}
+  - component: {fileID: 639534383}
   m_Layer: 0
   m_Name: Takeoff_Area
   m_TagString: TakeoffArea
@@ -670,7 +694,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 10, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &639534380
 MeshRenderer:
@@ -744,6 +768,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &639534383
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639534378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51a3027c22b62404599b0208deb799ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TakeoffAreaTrigger
+  examManager: {fileID: 38692162}
 --- !u!1 &993696325
 GameObject:
   m_ObjectHideFlags: 0
@@ -782,7 +819,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 10, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &993696327
 MeshRenderer:
@@ -1337,6 +1374,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1432535997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1432535998}
+  m_Layer: 0
+  m_Name: RespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1432535998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432535997}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 120, y: 2, z: 55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1446666953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1544,6 +1612,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1584318280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1584318281}
+  m_Layer: 0
+  m_Name: LaunchPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1584318281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1584318280}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 124454798}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617595279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,7 +1807,7 @@ Transform:
   m_GameObject: {fileID: 1617595279}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2346242, y: 0.013446607, z: -0.0032458224, w: 0.9719877}
-  m_LocalPosition: {x: 120, y: 6, z: 47}
+  m_LocalPosition: {x: 120, y: 4.4, z: 72.34}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1726,6 +1825,7 @@ GameObject:
   - component: {fileID: 1970514201}
   - component: {fileID: 1970514200}
   - component: {fileID: 1970514199}
+  - component: {fileID: 1970514203}
   m_Layer: 0
   m_Name: Landing_Area
   m_TagString: LandingArea
@@ -1752,7 +1852,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 500, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1970514200
 MeshRenderer:
@@ -1826,6 +1926,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1970514203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1970514198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1718d8e64d17e497cab96da2c715853d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LandingAreaTrigger
+  examManager: {fileID: 38692162}
 --- !u!1 &2136208588
 GameObject:
   m_ObjectHideFlags: 0
@@ -1897,7 +2010,7 @@ Transform:
   m_GameObject: {fileID: 2136208588}
   serializedVersion: 2
   m_LocalRotation: {x: 0.2346242, y: 0.013446606, z: -0.0032458217, w: 0.9719878}
-  m_LocalPosition: {x: 120, y: 6, z: 47}
+  m_LocalPosition: {x: 120, y: 4.4, z: 72.34}
   m_LocalScale: {x: 1, y: 1, z: 1.5491}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1970,3 +2083,4 @@ SceneRoots:
   - {fileID: 1009379321}
   - {fileID: 1543389650}
   - {fileID: 38692163}
+  - {fileID: 1432535998}

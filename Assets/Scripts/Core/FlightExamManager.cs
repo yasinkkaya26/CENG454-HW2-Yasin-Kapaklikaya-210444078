@@ -7,6 +7,9 @@ public class FlightExamManager : MonoBehaviour
     [SerializeField] private TMP_Text statusText;
     [SerializeField] private TMP_Text missionText;
 
+    [Header("Audio")]
+    [SerializeField] private AudioSource successAudioSource;
+
     private bool hasTakenOff = false;
     private bool hasEnteredDangerZone = false;
     private bool missileCountdownActive = false;
@@ -85,6 +88,12 @@ public class FlightExamManager : MonoBehaviour
     {
         missionComplete = true;
         statusText.text = "Mission complete.";
+
+        if (successAudioSource != null)
+        {
+            successAudioSource.Play();
+        }
+
         RefreshMissionText();
     }
 
@@ -127,5 +136,15 @@ public class FlightExamManager : MonoBehaviour
         }
 
         missionText.text = "Mission: In progress";
+    }
+
+    public void OnMissileHit()
+    {
+        missileActive = false;
+        missileCountdownActive = false;
+        threatCleared = false;
+
+        statusText.text = "Missile hit! Return to runway and try again.";
+        RefreshMissionText();
     }
 }
